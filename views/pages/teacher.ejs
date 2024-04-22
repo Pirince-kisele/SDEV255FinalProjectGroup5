@@ -11,18 +11,16 @@
         <div class="d-sm-flex align-items-center justify-content-between g-4">
           <div class="px-2">
             <h1>
-              Make a<span class="text-warning">
-                good choice for a best Future
+              Add <span class="text-warning">
+               courses 
               </span>
             </h1>
             <p class="lead my-4">
-              What is your dream for the future? who do you want to become in
-              the comming Years? The Answere for thise will determine who you
-              will become tomorrow.
+             you can add all the courses that you teach here and it is going to show in student  courses list for them add if they want to take your courses 
             </p>
           </div>
           <img
-            class="img-fluid w-50 d-none d-md-block px-2"
+            class="img-fluid w-50 d-none d-md-block px-2 rounded"
             src="https://www.theasianschool.net/blog/wp-content/uploads/2023/01/Books-Help-To-Get-More-Focus.jpg"
             alt="community picture"
           />
@@ -31,8 +29,21 @@
     </section>
     <section class="pt-2">
       <div class="container pt-5">
-        <h1 class="border-bottom">List of Teacher And Courses</h1>
-        <h4>No courses has been publish from any teachear</h4>
+        <h1 class="border-bottom">Add Courses</h1>
+         <div class="create-blog content">
+     <form action="/teacher/new" method="Post">
+      <label for="name">Course Name:</label>
+      <input type="text" id="name" required>
+      <label for="subject">Course Subject:</label>
+      <input type="text" id="subject" required>
+       <label for="credit">Course Credit:</label>
+      <input type="text" id="credit" required>
+      <label for="credit">Course Description:</label>
+      <textarea type="text" id="description" required></textarea>
+      <button type="submit">Submit</button>
+     </form>
+    </div>
+        
         <!-- Your content goes here -->
       </div>
     </section>

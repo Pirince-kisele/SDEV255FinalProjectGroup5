@@ -19,8 +19,18 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.get("/", (req, res) => {
   res.render("pages/index");
 });
-app.post('courses',(req, res)=>{
 
+app.get("/addcourse", (req, res) => {
+  res.render("pages/addcourse");
+});
+app.get('/teacher',(req, res)=>{
+    res.render('pages/teacher')
+  
+})
+app.post('/teacher/new',(req, res)=>{
+  let reuest = req.body
+  console.log(reuest.name)
+    res.redirect( '/addcourse')
   
 })
 

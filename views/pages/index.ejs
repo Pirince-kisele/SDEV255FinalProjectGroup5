@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-     <%- include('../partials/head') %>
-<body>
+  <%- include('../partials/head') %>
+  <body>
     <%- include('../partials/nav') %>
-        <section class="h">
-            <div class="container ">
-                
-                <h1 class="border-bottom">All courses</h1>
-                <!-- Your content goes here -->
-            </div>
-        </section>
-        <section class="pt-5">
-            <div class="container pt-5">
-                <h1 class="border-bottom">All courses</h1>
-                <!-- Your content goes here -->
-            </div>
+    <!-- Showcase -->
+    <section
+      class="bg-dark text-light p-5 p-lg-2 pt-lg-5 pt-sm-5 text-center text-sm-start bbg"
+    >
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between g-4">
+          <div class="px-2">
+            <h1>
+              Welcome to<span class="text-warning">
+                Ivytech Community College Courses
+              </span>
+            </h1>
+            <p class="lead my-4">
+              Plan and prepar your future by Choing the best option of class offer by Ivytech to invest for your future. the future is today
+            </p>
+            <button
+              class="btn btn-primary btn-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#enroll"
+            >
+              Register for Courses
+            </button>
+          </div>
+          <img
+            class="img-fluid w-50 d-none d-md-block px-2"
+            src="https://www.ivytech.edu/media/oylfdsfp/icls.jpg"
+            alt="community picture"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="pt-2">
+      <div class="container pt-5">
+        <h1 class="border-bottom">Your courses</h1>
+        <h4>Nothing to Show for now login to your Account to see All your courses</h4>
+        <!-- Your content goes here -->
+      </div>
+    </section>
 
-        </section>
-   
-
-
-
-
-
-
-
-
-
-
-        
-        <%- include('../partials/footer') %>
-
-
-
-
-            
-
-            <%- include('../partials/script') %>
-  
-</body>
+    <%- include('../partials/footer') %> <%- include('../partials/script') %>
+  </body>
 </html>
