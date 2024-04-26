@@ -16,8 +16,7 @@
               </span>
             </h1>
             <p class="lead my-4">
-              Plan and prepar your future by Choing the best option of class
-              offer by Ivytech to invest for your future. the future is today
+              Plan and prepar your future by Choing the best option of class offer by Ivytech to invest for your future. the future is today
             </p>
             <button
               class="btn btn-primary btn-lg"
@@ -37,19 +36,9 @@
     </section>
     <section class="pt-2">
       <div class="container pt-5">
-        <h1 class="border-bottom"><%= %></h1>
+        <h1 class="border-bottom">Your courses</h1>
+        <h4>Nothing to Show for now login to your Account to see All your courses</h4>
         <!-- Your content goes here -->
-        <h2><%= title%></h2>
-
-        <% if (courses.length > 0) { %> <% courses.forEach(course => { %>
-        <a class="" href="/courses/<%= course._id %>">
-          <h3 class=""><%= course.name %></h3>
-          <p class=""><%=course.subject %></p>
-        </a>
-
-        <% }) %> <% }else{ %>
-        <p>No Thing to Show for Now Register for Class and Add Courses</p>
-        <% } %>
       </div>
     </section>
 
