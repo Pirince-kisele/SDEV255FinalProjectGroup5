@@ -5,9 +5,9 @@
     <%- include('../partials/nav') %>
     <!-- Showcase -->
     <section
-      class="bg-dark text-light p-5 p-lg-2 pt-lg-5 pt-sm-5 text-center text-sm-start bbg"
+      class="bg-dark text-light  p-lg-2  pt-sm-3 text-center text-sm-start bbg"
     >
-      <div class="container">
+      <div class="container p-5">
         <div class="d-sm-flex align-items-center justify-content-between g-4">
           <div class="px-2">
             <h1>
@@ -16,15 +16,10 @@
               </span>
             </h1>
             <p class="lead my-4">
-              Plan and prepar your future by Choing the best option of class offer by Ivytech to invest for your future. the future is today
+              Plan and prepar your future by Choing the best option of class
+              offer by Ivytech to invest for your future. the future is today
             </p>
-            <button
-              class="btn btn-primary btn-lg"
-              data-bs-toggle="modal"
-              data-bs-target="#enroll"
-            >
-              Register for Courses
-            </button>
+           
           </div>
           <img
             class="img-fluid w-50 d-none d-md-block px-2"
@@ -34,14 +29,22 @@
         </div>
       </div>
     </section>
-    <section class="pt-2">
-      <div class="container pt-5">
-        <h1 class="border-bottom">Your courses</h1>
-        <h4>Nothing to Show for now login to your Account to see All your courses</h4>
+    <section class="pt-5">
+      <div class="container pt-2">
+        <h2 class="border-bottom mb-3"><%= title %></h2>
         <!-- Your content goes here -->
+        <h2>Course name: <%= course.name %></h2>
+        <div class="content">
+          <p><strong>Subject: </strong><%= course.subject %></p>
+          <p><strong>Credit: </strong>  <%= course.credit %> hours</p>
+          <p> <strong>Course Description: </strong> <%= course.description %></p>
+           <a class=" rounded update" data-doc="<%= course._id %>"> <i class="bi bi-pencil-fill text-dark mx-1"> Edit</i></a>
+          <a class="delete rounded " data-doc="<%= course._id %>"> <i class="bi bi-trash text-dark mx-1"> Delete</i></a>
+        </div>
       </div>
     </section>
 
-    <%- include('../partials/footer') %> <%- include('../partials/script') %>
+    <%- include('../partials/footer') %> 
+    <%- include('../partials/script') %>
   </body>
 </html>

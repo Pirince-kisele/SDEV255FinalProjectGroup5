@@ -3,25 +3,32 @@ const express = require("express");
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const Courses = require('./model/courses')
- const path = require('path')
+ const path = require('path');
+ const dotenv = require('dotenv')
+const { error } = require("console");
 
 const app = express();
-const port = 3000;
+const PORT =  process.env.PORT || 3000;
 // connection String from the database
 const CONNECTION = 'mongodb+srv://liyopirince1992:Miradi32Tembo@blogs.x7sgeik.mongodb.net/SDV255FINALPROJECTDB'
+// require the dotenv en config it for it to work when we run the npm start
+if(process.env.NODE_ENV !== 'production'){
+ require('dotenv').config();
+}
 
 // connect to mongodb
 mongoose.connect(CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
-.then((result) => app.listen(port,()=> {console.log(`server is listening on port ${port}`)}), console.log("connected to mongodb and satrt the server"))
-.catch((err) => console.log(err));
+.then((result) => app.listen(PORT,()=> {console.log(`server is listening on port ${PORT}`)}), console.log("connected to mongodb and satrt the server"))
+.catch((err) => console.log(err.message));
 
 
 //views Engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 //srt EJS as temple engine for static files
-app.use(morgan('dev'))
 app.use(express.static("public"));
+app.use(morgan('dev'))
+
 // Parse Fson and url-encoded data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
@@ -42,7 +49,7 @@ app.get('/teacher',(req, res)=>{
 
 
 // Courses Route 
-// this is the route to get all the course
+// this is the route to get all the course that was created
 app.get("/courses", (req, res) =>{
   Courses.find().sort({createdAt: -1})
   .then((result) => res.render('pages/index', {courses: result, title: 'All Courses'}))
@@ -64,7 +71,7 @@ app.get("/courses/:id", (req, res) =>{
 const id = req.params.id;
   Courses.findById(id)
   .then((result) => {
-    res.render('pages/course-details', {course: result, title: 'Blog Details'})})
+    res.render('pages/course-details', {course: result, title: 'Course Details'})})
   .catch((err) => {console.log(err)});
 })
 
@@ -73,7 +80,26 @@ app.delete('/courses/:id', (req, res) =>{
 const id = req.params.id;
   Courses.findByIdAndDelete(id)
   .then((result) => {
-    res.json({redirect:'/courses'})
+    if(!result){
+      res.status(404).json({error: 'course not found'})
+    }else{
+          res.json({redirect:'/courses'});
+    }
+
+  })
+     .catch((err) => {res.status(500).json({error: 'something went wrong'}), console.log(err)});
+})
+
+// update course
+app.put('/courses/:id', (req, res) =>{
+const id = req.params.id;
+const updateData = req.body
+  Courses.replaceOne({_id: id}, updateData)
+  console.log(updateData)
+
+  .then((result) => {
+    res.json({updatedCount:result.modifiedCount}, {redirect:'/teacher'})
+    console.log(result)
   })
      .catch((err) => {console.log(err)});
 })

@@ -5,7 +5,7 @@
     <%- include('../partials/nav') %>
     <!-- Showcase -->
     <section
-      class="bg-dark text-light p-5 p-lg-2 pt-lg-5 pt-sm-5 text-center text-sm-start bbg"
+      class="bg-dark text-light  p-lg-2 pt-lg-5 pt-sm-5 text-center text-sm-start bbg"
     >
       <div class="container">
         <div class="d-sm-flex align-items-center justify-content-between g-4">
@@ -37,19 +37,19 @@
     </section>
     <section class="pt-2">
       <div class="container pt-5">
-        <h1 class="border-bottom"><%= %></h1>
         <!-- Your content goes here -->
-        <h2><%= title%></h2>
-
-        <% if (courses.length > 0) { %> <% courses.forEach(course => { %>
-        <a class="" href="/courses/<%= course._id %>">
-          <h3 class=""><%= course.name %></h3>
-          <p class=""><%=course.subject %></p>
+          <h1 class="border-bottom"><%=title%></h1>
+          <div class="courses content">
+            <% if (courses.length > 0) { %> <% courses.forEach(course => { %>
+        <a class="single" href="/courses/<%= course._id %>">
+          <h3 class="title"><%= course.name %></h3>
+          <p class="snippet"><%=course.subject %></p>
         </a>
 
         <% }) %> <% }else{ %>
         <p>No Thing to Show for Now Register for Class and Add Courses</p>
         <% } %>
+          </div>
       </div>
     </section>
 

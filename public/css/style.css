@@ -2,6 +2,7 @@
     display: block;
     content: '';
     height: 60px;
+    background-color: red;
   }
 
      .create-blog form {
@@ -36,3 +37,47 @@
       cursor: pointer;
     }
 
+/*index  courses style */
+.courses a {
+  display: block;
+  max-width: 400px;
+  margin: 40px 0;
+  padding-left: 30px;
+  border-left: 6px solid crimson;
+  text-decoration: none;
+}
+
+.courses a:hover h3 {
+  color: crimson;
+  
+}
+ .content {
+   margin-left: 20;
+ }
+
+ .title, .single, .snippet
+ {
+  
+   text-decoration: none;
+   color: #222;
+ }
+ .delete:hover {
+   cursor: pointer;
+   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+   background-color: red;
+ }
+ .delete{
+  padding: 10px;
+box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+ }
+ .update {
+   padding: 10px;
+   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+ }
+
+    .update:hover {
+      cursor: pointer;
+      box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+      background-color: rgba(77, 240, 117, 0.54);
+    }
+ 
