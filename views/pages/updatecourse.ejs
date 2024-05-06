@@ -10,10 +10,10 @@
       <div class="container">
         <div class="d-sm-flex align-items-center justify-content-between g-4">
           <div class="px-2">
-            <h1>Add <span class="text-warning"> courses </span></h1>
+            <h1>Update <span class="text-warning"> courses </span></h1>
             <p class="lead my-4">
-              you can add all the courses that you teach here and it is going to
-              show in student courses list for them add if they want to take
+              you can update all the courses that you teach here and it is going
+              to show in student courses list for them add if they want to take
               your courses
             </p>
           </div>
@@ -27,9 +27,9 @@
     </section>
     <section class="pt-2">
       <div class="container pt-5">
-        <h1 class="border-bottom">Add Courses</h1>
+        <h1 class="border-bottom">Update Courses</h1>
         <div class="create-blog content">
-          <form action="/courses" method="Post">
+          <form action="/courses/:id/updatecourse" method="PUT">
             <label for="name">Course Name:</label>
             <input type="text" id="name" name="name" required />
             <label for="subject">Course Subject:</label>
@@ -37,8 +37,13 @@
             <label for="credit">Course Credit:</label>
             <input type="number" id="credit" name="credit" required />
             <label for="credit">Course Description:</label>
-            <textarea type="text" id="description" name="description" required></textarea>
-            <button class="rounded btn-primary" type="submit">Add Course</button>
+            <textarea
+              type="text"
+              id="description"
+              name="description"
+              required
+            ></textarea>
+            <button class="rounded btn-secondary" type="submit">Update</button>
           </form>
         </div>
 

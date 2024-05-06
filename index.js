@@ -46,6 +46,12 @@ app.get('/teacher',(req, res)=>{
     res.render('pages/teacher')
   
 })
+app.get('/courses/:id/updatecourse',(req, res)=>{
+    res.render('pages/updatecourse')
+  
+})
+
+
 
 
 // Courses Route 
@@ -91,14 +97,15 @@ const id = req.params.id;
 })
 
 // update course
-app.put('/courses/:id', (req, res) =>{
+app.put('/courses/:id/', (req, res) =>{
 const id = req.params.id;
 const updateData = req.body
-  Courses.replaceOne({_id: id}, updateData)
-  console.log(updateData)
+ console.log(updateData)
+  Courses.replaceOne({_id:id}, updateData)
+ 
 
   .then((result) => {
-    res.json({updatedCount:result.modifiedCount}, {redirect:'/teacher'})
+    res.status(304).json({updatedCount:result.modifiedCount}, {redirect:'/courses'})
     console.log(result)
   })
      .catch((err) => {console.log(err)});
