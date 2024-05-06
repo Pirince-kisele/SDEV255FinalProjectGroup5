@@ -6,6 +6,9 @@ const Courses = require('./model/courses')
  const path = require('path');
  const dotenv = require('dotenv')
 const { error } = require("console");
+const authRoutre = require('./routes/authRoutes')
+const { requireAuth, checkUser } = require('./middleware/AuthMiddleware');
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const PORT =  process.env.PORT || 3000;
@@ -27,7 +30,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 //srt EJS as temple engine for static files
 app.use(express.static("public"));
-app.use(morgan('dev'))
+app.use(morgan('dev'));
+app.use(cookieParser());
 
 // Parse Fson and url-encoded data
 app.use(bodyParser.json());

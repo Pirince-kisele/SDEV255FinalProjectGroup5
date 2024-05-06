@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+  <body>
+    <%- include('partials/nav') %>
+    <!-- Showcase -->
+    <section
+      class="bg-dark text-light p-lg-2 pt-sm-3 text-center text-sm-start bbg"
+    >
+      <div class="container p-5">
+        <div class="d-sm-flex align-items-center justify-content-between g-4">
+          <div class="px-2">
+            <h1>
+              Welcome to<span class="text-warning">
+                Ivytech Community College Courses
+              </span>
+            </h1>
+            <p class="lead my-4">
+              Plan and prepar your future by Choing the best option of class
+              offer by Ivytech to invest for your future. the future is today
+            </p>
+          </div>
+          <img
+            class="img-fluid w-50 d-none d-md-block px-2"
+            src="https://www.ivytech.edu/media/oylfdsfp/icls.jpg"
+            alt="community picture"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="pt-5">
+      <div class="container pt-2">
+        <h2 class="border-bottom mb-3"><%= title %></h2>
+        <!-- Your content goes here -->
+        <form action="/signup">
+          <h2>Login</h2>
+          <label for="email">Email</label>
+          <input type="text" name="email" />
+          <div class="email error"></div>
+          <label for="password">Password</label>
+          <input type="password" name="password" />
+          <div class="password error"></div>
+          <button>login</button>
+        </form>
+
+        <script>
+          const form = document.querySelector("form");
+          const emailError = document.querySelector(".email.error");
+          const passwordError = document.querySelector(".password.error");
+
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // reset errors
+            emailError.textContent = "";
+            passwordError.textContent = "";
+
+            // get values
+            const email = form.email.value;
+            const password = form.password.value;
+
+            try {
+              const res = await fetch("/login", {
+                method: "POST",
+                body: JSON.stringify({ email, password }),
+                headers: { "Content-Type": "application/json" },
+              });
+              const data = await res.json();
+              console.log(data);
+              if (data.errors) {
+                emailError.textContent = data.errors.email;
+                passwordError.textContent = data.errors.password;
+              }
+              if (data.user) {
+                location.assign("/");
+              }
+            } catch (err) {
+              console.log(err);
+            }
+          });
+        </script>
+      </div>
+    </section>
+
+    <%- include('partials/footer') %> <%- include('partials/script') %>
+  </body>
+</html>
