@@ -6,7 +6,7 @@ const Courses = require('./model/courses')
  const path = require('path');
  const dotenv = require('dotenv')
 const { error } = require("console");
-const authRoutre = require('./routes/authRoutes')
+const authRoutes = require('./routes/authRoutes')
 const { requireAuth, checkUser } = require('./middleware/AuthMiddleware');
 const cookieParser = require("cookie-parser");
 
@@ -36,6 +36,13 @@ app.use(cookieParser());
 // Parse Fson and url-encoded data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
+
+
+// routes
+app.get('*', checkUser);
+app.get('/', (req, res) => res.redirect('courses'));
+app.get('/smoothies', requireAuth, (req, res) => res.render('smoothies'));
+app.use(authRoutes);
 
 
 // links or normal routes those routes help to navigate between pages

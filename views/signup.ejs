@@ -30,23 +30,36 @@
     </section>
     <section class="pt-5">
       <div class="container pt-2">
-        <h2 class="border-bottom mb-3"><%= title %></h2>
+        <h2 class="border-bottom mb-3">Create an Account</h2>
         <!-- Your content goes here -->
-        <form action="/signup">
+        <form class="sign" action="/signup">
           <h2>Sign up</h2>
+          <label for="fname">First Name</label>
+          <input class="fname" type="text" name="fname" required />
+          <label for="lname">Last Name</label>
+          <input class="lname" type="text" name="lname" required />
           <label for="email">Email</label>
           <input type="text" name="email" required />
           <div class="email error"></div>
           <label for="password">Password</label>
           <input type="password" name="password" required />
           <div class="password error"></div>
+          <label for="teacher">click the checkbox is your are a Teacher</label>
+          <input class="teacher" type="checkbox" name="teacher" />
           <button>Sign up</button>
         </form>
 
         <script>
-          const form = document.querySelector("form");
+          const form = document.querySelector("form.sign");
           const emailError = document.querySelector(".email.error");
           const passwordError = document.querySelector(".password.error");
+          const teachear = document.querySelector(".teacher");
+          teachear.addEventListener("change", (e) => {
+            e.defaultPrevented();
+            if (this.checked) {
+              return true;
+            }
+          });
 
           form.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -58,11 +71,14 @@
             // get values
             const email = form.email.value;
             const password = form.password.value;
+            const isTeacher = form.teacher.value;
+            const fname = form.fname.value;
+            const lname = form.lname.value;
 
             try {
               const res = await fetch("/signup", {
                 method: "POST",
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password, isTeacher,fname,lname }),
                 headers: { "Content-Type": "application/json" },
               });
               const data = await res.json();
