@@ -19,13 +19,6 @@
               Plan and prepar your future by Choing the best option of class
               offer by Ivytech to invest for your future. the future is today
             </p>
-            <button
-              class="btn btn-primary btn-lg"
-              data-bs-toggle="modal"
-              data-bs-target="#enroll"
-            >
-              Register for Courses
-            </button>
           </div>
           <img
             class="img-fluid w-50 d-none d-md-block px-2"
@@ -38,18 +31,9 @@
     <section class="pt-2">
       <div class="container pt-5">
         <!-- Your content goes here -->
-        <h1 class="border-bottom"><%=title%></h1>
-        <div class="courses content">
-          <% if (courses.length > 0) { %> <% courses.forEach(course => { %>
-          <a class="single" href="/courses/<%= course._id %>">
-            <h3 class="title"><%= course.name %></h3>
-            <p class="snippet"><%=course.subject %></p>
-          </a>
-
-          <% }) %> <% }else{ %>
-          <p>No Thing to Show for Now Register for Class and Add Courses</p>
-          <% } %>
-        </div>
+        <h1 class="border-bottom">My Courses</h1>
+        <h2>Nothing to Show for Now</h2>
+        <p class="lead"> Go to Courses link to Add Courses</p>
       </div>
     </section>
 

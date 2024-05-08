@@ -46,27 +46,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // routes
 app.get("*", checkUser);
-app.get('/home', (req, res) => {
+app.get('/', (req, res) => {
   res.render('home');
 })
 //app.get("/", (req, res) => res.redirect("courses"));
-app.get("/courses", requireAuth, (req, res) => res.redirect("/courses"));
+app.get("/index", requireAuth, (req, res) => res.render("pages/index"));
+// links or normal routes those routes help to navigate between pages
+app.get("/addcourse", requireAuth, (req, res) => res.redirect("/courses") // we redirect every courses we have in courses route to the home page
+);
+app.get("/teacher", requireAuth, (req, res) => {
+  res.render("pages/teacher");
+});
 app.use(authRoutes);
 
 
 
 
-// links or normal routes those routes help to navigate between pages
-app.get("/", (req, res) => {
-  res.redirect("/courses"); // we redirect every courses we have in courses route to the home page
-});
 
-app.get("/addcourse", (req, res) => {
-  res.render("pages/addcourse");
-});
-app.get("/teacher", (req, res) => {
-  res.render("pages/teacher");
-});
+
+
+
 app.get("/courses/:id/updatecourse", (req, res) => {
   res.render("pages/updatecourse");
 });
@@ -77,7 +76,7 @@ app.get("/courses", (req, res) => {
   Courses.find()
     .sort({ createdAt: -1 })
     .then((result) =>
-      res.render("pages/index", { courses: result, title: "All Courses" }),
+      res.render("pages/addcourse", { courses: result, title: "All Courses" }),
     )
     .catch((err) => console.log(err));
 });
