@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head.ejs') %>
+  <body>
+    <%- include('partials/nav') %>
+    <!-- Showcase -->
+    <section
+      class="bg-dark text-light p-2 p-lg-2 pt-lg-5 pt-sm-5 text-center text-sm-start bbg"
+    >
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between g-4">
+          <div class="px-2">
+            <h1>
+              Welcome to<span class="text-warning">
+                Ivytech Community College Courses
+              </span>
+            </h1>
+            <p class="lead my-4">
+              Plan and prepar your future by Choing the best option of class
+              offer by Ivytech to invest for your future. the future is today
+            </p>
+            <button
+              class="btn btn-primary btn-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#enroll"
+            >
+              Register for Courses
+            </button>
+          </div>
+          <img
+            class="img-fluid w-50 d-none d-md-block px-2"
+            src="https://www.ivytech.edu/media/oylfdsfp/icls.jpg"
+            alt="community picture"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="pt-2">
+      <div class="container pt-5">
+        <!-- Your content goes here -->
+      <h2> Nothing to Show for Now </h2>
+        <p>log in to your account to see your courses or add courses</p>
+        <a class="btn " href="/courses">View your courses</a>
+      </div>
+    </section>
+
+    <%- include('partials/footer') %> <%- include('partials/script') %>
+  </body>
+</html>
