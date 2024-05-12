@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
+const { type } = require('os');
 
 const userSchema = new mongoose.Schema({
   fname:{
@@ -14,7 +15,10 @@ const userSchema = new mongoose.Schema({
     
    isTeacher:{
     type: Boolean,
-    default: false,
+
+  },
+  studentCourses:{
+    type:Array,
   },
   
   email: {

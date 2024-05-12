@@ -31,9 +31,18 @@
     <section class="pt-2">
       <div class="container pt-5">
         <!-- Your content goes here -->
-        <h1 class="border-bottom">My Courses</h1>
-        <h2>Nothing to Show for Now</h2>
-        <p class="lead"> Go to Courses link to Add Courses</p>
+        <h1 class="border-bottom">My Courses <span class="h6">Student Name:  <%=user?.fname %> </span></h1>
+        <div class="courses content">
+          <% if (user?.studentCourses.length > 0) { %> <%
+          user?.studentCourses.forEach(course => { %>
+          <a class="single" href="/courses/<%= course._id %>">
+           <%= user?.studentCourses.append(courses) %>
+          </a>
+
+          <% }) %> <% }else{ %>
+          <p>No Thing to Show for Now you Haven't add Course Yet Go to courses and Add your Choices Course</p>
+          <% } %>
+        </div>
       </div>
     </section>
 

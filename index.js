@@ -98,10 +98,13 @@ app.get("/courses/:id", (req, res) => {
   const id = req.params.id;
   Courses.findById(id)
     .then((result) => {
-      res.render("pages/course-details", {
+  
+         res.render("pages/course-details", {
         course: result,
         title: "Course Details",
-      });
+      })
+       
+     
     })
     .catch((err) => {
       console.log(err);

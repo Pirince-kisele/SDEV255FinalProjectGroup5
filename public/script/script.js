@@ -1,9 +1,13 @@
-  const trashcan = document.querySelector('a.delete');
-                       trashcan.addEventListener('click', fetchCourseDaitails)
+
+
+const add = document.querySelector('.add')
+                       add?.addEventListener('click',fetchCourse)
+const trashcan = document.querySelector('.delete');
+                       trashcan?.addEventListener('click', fetchCourseDaitails)
 
 
 
-
+// the async function to delete the course by is id
                        async function fetchCourseDaitails (){
                         try {
                              const endpoint = `/courses/${trashcan.dataset.doc}`;
@@ -21,20 +25,21 @@
 
 
                        }
-                    
+            
 
-const edit = document.querySelector('a.update');
-                       edit.addEventListener('click', (e) =>{
 
-                        edit.setAttribute('href', `/courses/${edit.dataset.doc}/updatecourse`)
-                        const updateendpoint = `/courses/${edit.dataset.doc}/updatecourse`;
-                            console.log(`this is the endpoint we fech${updateendpoint}`)
-                           fetch(updateendpoint, {
-                               method:'put'
-                              
-                           })
-                           .then((response) => response.json(),console.log(response))
-                            .then((data) => window.location.href = data.redirect)
-                           .catch(err => console.log(err));
-                        
-                       })
+
+
+// the async function to 
+ async function fetchCourse (){
+ const endpoints =`/courses/${add.dataset.doc}`;
+try{
+    const response = await fetch(endpoints,{method:'get'})
+    console.log(response)
+
+}catch(err){
+console.log(err)
+}
+
+
+}

@@ -32,13 +32,27 @@
     <section class="pt-2">
       <div class="container pt-5">
         <!-- Your content goes here -->
-         <h1 class="border-bottom"><%=title%></h1>
+        <h1 class="border-bottom"><%=title%></h1>
         <div class="courses content">
           <% if (courses.length > 0) { %> <% courses.forEach(course => { %>
-          <a class="single" href="/courses/<%= course._id %>">
-            <h3 class="title"><%= course.name %></h3>
-            <p class="snippet"><%=course.subject %></p>
-          </a>
+          <div class="d-flex align-items-center justify-content-between g-4">
+            <div>
+              <a class="single" href="/courses/<%= course._id %>">
+                <h3 class="title"><%= course.name %></h3>
+                <p class="snippet"><%=course.subject %></p>
+              </a>
+            </div>
+
+            <div>
+              <% if(!user?.isTeacher) {%>
+              <a class="rounded btn" data-doc="<%= course._id %>">
+                <i class="bi bi-cart-plus-fill text-dark mx-1">
+                  add course</i
+                ></a
+              >
+              <% } %>
+            </div>
+          </div>
 
           <% }) %> <% }else{ %>
           <p>No courses has been publish from any teachear</p>

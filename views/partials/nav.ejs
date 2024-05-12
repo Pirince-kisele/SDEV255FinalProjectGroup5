@@ -19,11 +19,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navmenu">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-        <% if (user) { %>
-        <li class="nav-item"><a class="nav-link " aria-current="page">Welcome <%= user.email %></a></li>
-        
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/index">Home</a>
+        <% if(user && user.isTeacher) { %>
+           <a class="nav-link" aria-current="page"
+            >Welcome <%= user.fname %> <%= user.lname %></a
+          >
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/addcourse">Courses</a>
@@ -31,17 +30,37 @@
         <li class="nav-item">
           <a class="nav-link" href="/teacher">Teacher</a>
         </li>
+        <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
+        <% } %>
+         <% if (user && !user.isTeacher) {%>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page"
+            >Welcome <%= user.fname %> <%= user.lname %></a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/index">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/addcourse">Courses</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Student Account</a>
+          <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
         </li>
-        <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
-        <% } else { %>
-        <a class="nav-link active" aria-current="page" href="/">Home</a>
+        <% } %>
+
+        
+        <% if (!user && !user?.isTeacher) { %>
+         <a class="nav-link active" aria-current="page" href="/">Home</a>
         <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
         <li class="nav-item">
           <a class="nav-link" href="/signup" class="btn">Sign up</a>
         </li>
         <% } %>
+       
       </ul>
     </div>
   </div>
