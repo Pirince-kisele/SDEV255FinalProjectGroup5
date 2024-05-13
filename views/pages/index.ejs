@@ -36,8 +36,12 @@
           <% if (user?.studentCourses.length > 0) { %> <%
           user?.studentCourses.forEach(course => { %>
           <a class="single" href="/courses/<%= course._id %>">
-           <%= user?.studentCourses.append(courses) %>
-          </a>
+      
+              <h2>Course name: <%= course.name %></h2>
+              <div class="content">
+              <p><strong>Subject: </strong><%= course.subject %></p>
+              <p><strong>Credit: </strong> <%= course.credit %> hours</p>
+              <p><strong>Course Description: </strong> <%= course.description %></p>
 
           <% }) %> <% }else{ %>
           <p>No Thing to Show for Now you Haven't add Course Yet Go to courses and Add your Choices Course</p>

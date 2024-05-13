@@ -55,7 +55,11 @@ app.get("/index", requireAuth, (req, res) => res.render("pages/index"));
 app.get("/addcourse", requireAuth, (req, res) => res.redirect("/courses") // we redirect every courses we have in courses route to the home page
 );
 app.get("/teacher", requireAuth, (req, res) => {
-  res.render("pages/teacher");
+  const viewsData ={
+    edit: false,
+    pageTitle:'Add Course'
+  }
+  res.render("pages/teacher", viewsData);
 });
 app.use(authRoutes);
 
@@ -98,20 +102,18 @@ app.get("/courses/:id", (req, res) => {
   const id = req.params.id;
   Courses.findById(id)
     .then((result) => {
-  
          res.render("pages/course-details", {
         course: result,
         title: "Course Details",
       })
-       
-     
+        
     })
     .catch((err) => {
       console.log(err);
     });
 });
 
-// delet blog by id
+// delet course by id
 app.delete("/courses/:id", (req, res) => {
   const id = req.params.id;
   Courses.findByIdAndDelete(id)
@@ -128,19 +130,23 @@ app.delete("/courses/:id", (req, res) => {
 });
 
 // update course
-app.put("/courses/:id/", (req, res) => {
+app.get("/edit/:id", (req, res) => {
   const id = req.params.id;
-  const updateData = req.body;
-  console.log(updateData);
-  Courses.replaceOne({ _id: id }, updateData)
+  Courses.findById(id)
+  .then((result) => {
 
-    .then((result) => {
-      res
-        .status(304)
-        .json({ updatedCount: result.modifiedCount }, { redirect: "/courses" });
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const viewsData = {
+      edit: true,
+      course: result,
+      pageTitle: 'Edit Course'
+    };
+      res.render("pages/teacher", viewsData);
+  })
+ 
 });
+
+app.put('/edit/:id', async(req,res) =>{
+    const courseId = req.params.id;
+    const result = await Courses.replaceOne({_id: courseId}, req.body)
+    res.json({uddateCount: result.modifiedCount})
+})

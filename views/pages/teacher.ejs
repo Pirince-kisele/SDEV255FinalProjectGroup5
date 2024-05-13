@@ -27,23 +27,26 @@
     </section>
     <section class="pt-2">
       <div class="container pt-5">
-        <h1 class="border-bottom">Add Courses</h1>
+        <h1 class="border-bottom"><%= edit ? 'Edit Course' : 'Add Courses' %></h1>
         <div class="create-blog content">
-          <form action="/courses" method="Post">
+            
+          <form action= <%= edit ? '/courses/' + course.id : "/courses"  %> method= <%= edit ? 'PUT' : 'POST' %> >
+        
             <label for="name">Course Name:</label>
-            <input type="text" id="name" name="name" required />
+            <input type="text" id="name" name="name" required  value="<%= edit ? course.name : '' %>"/>
             <label for="subject">Course Subject:</label>
-            <input type="text" id="subject" name="subject" required />
+            <input type="text" id="subject" name="subject" required  value="<%= edit ? course.subject : '' %>" />
             <label for="credit">Course Credit:</label>
-            <input type="number" id="credit" name="credit" required />
+            <input type="number" id="credit" name="credit" required   value="<%= edit ? course.credit : '' %>"/>
             <label for="credit">Course Description:</label>
-            <textarea type="text" id="description" name="description" required></textarea>
-            <button class="rounded btn-primary" type="submit">Add Course</button>
+            <textarea type="text" id="description" name="description" required > <%= edit ? course.description : '' %></textarea>
+            <button class="rounded btn-primary" type="submit"><%= edit ? 'Edit Course' :'Add Course' %> </button>
           </form>
         </div>
 
         <!-- Your content goes here -->
       </div>
+    
     </section>
 
     <%- include('../partials/footer') %> <%- include('../partials/script') %>

@@ -4,6 +4,14 @@ const add = document.querySelector('.add')
                        add?.addEventListener('click',fetchCourse)
 const trashcan = document.querySelector('.delete');
                        trashcan?.addEventListener('click', fetchCourseDaitails)
+const edit = document.querySelector('.edit')
+edit?.addEventListener('click', ()=>{
+    console.log("yesssss")
+    edit.setAttribute('href', `/edit/${edit.dataset.doc}`)
+})
+
+
+// the async function to go to update
 
 
 
@@ -36,6 +44,9 @@ const trashcan = document.querySelector('.delete');
 try{
     const response = await fetch(endpoints,{method:'get'})
     console.log(response)
+    const data = await response.json()
+    console.log(data.course)
+      window.location.href = data.redirect
 
 }catch(err){
 console.log(err)
