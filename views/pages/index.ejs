@@ -33,6 +33,7 @@
         <!-- Your content goes here -->
         <h1 class="border-bottom">My Courses <span class="h6">Student Name:  <%=user?.fname %> </span></h1>
         <div class="courses content">
+          <%= const arrayCourse = user?.studentCourses %>
           <% if (user?.studentCourses.length > 0) { %> <%
           user?.studentCourses.forEach(course => { %>
           <a class="single" href="/courses/<%= course._id %>">
@@ -49,6 +50,9 @@
         </div>
       </div>
     </section>
+    <script>
+
+      </script>
 
     <%- include('../partials/footer') %> <%- include('../partials/script') %>
   </body>

@@ -9,6 +9,7 @@ const { error } = require("console");
 const authRoutes = require("./routes/authRoutes");
 const { requireAuth, checkUser } = require("./middleware/AuthMiddleware");
 const cookieParser = require("cookie-parser");
+const User = require("./model/User");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -41,8 +42,8 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 
 // Parse Fson and url-encoded data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.get("*", checkUser);
@@ -81,6 +82,7 @@ app.get("/courses", (req, res) => {
     .sort({ createdAt: -1 })
     .then((result) =>
       res.render("pages/addcourse", { courses: result, title: "All Courses" }),
+    res.json({course: result})
     )
     .catch((err) => console.log(err));
 });
@@ -102,9 +104,11 @@ app.get("/courses/:id", (req, res) => {
   const id = req.params.id;
   Courses.findById(id)
     .then((result) => {
+    const user = new User
          res.render("pages/course-details", {
         course: result,
         title: "Course Details",
+        user: user,
       })
         
     })
@@ -148,5 +152,5 @@ app.get("/edit/:id", (req, res) => {
 app.put('/edit/:id', async(req,res) =>{
     const courseId = req.params.id;
     const result = await Courses.replaceOne({_id: courseId}, req.body)
-    res.json({uddateCount: result.modifiedCount})
+    res.json({uddateCount: result.modifiedCount, })
 })

@@ -20,7 +20,7 @@ edit?.addEventListener('click', ()=>{
                         try {
                              const endpoint = `/courses/${trashcan.dataset.doc}`;
                         const response = await fetch(endpoint, {method:'delete'})
-                      
+                            console.log(response)
                             const data = await response.json()
                             console.log(data)
                             window.location.href = data.redirect
@@ -41,16 +41,17 @@ edit?.addEventListener('click', ()=>{
 // the async function to 
  async function fetchCourse (){
  const endpoints =`/courses/${add.dataset.doc}`;
-try{
-    const response = await fetch(endpoints,{method:'get'})
-    console.log(response)
-    const data = await response.json()
-    console.log(data.course)
-      window.location.href = data.redirect
+ try {
+    const response = await fetch('https://api.artic.edu/api/v1/artworks/search?q=cats');
+    if (!response.ok){
+        throw new Error (response.status)
+    }
+  
+    const data = response.json()
+    console.log(data)
 
-}catch(err){
-console.log(err)
-}
+ } catch (error) {
+    console.log(error)
+ }
 
-
-}
+ }
